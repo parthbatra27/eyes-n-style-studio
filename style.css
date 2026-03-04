@@ -1,0 +1,299 @@
+/* --- DESIGN SYSTEM & VARIABLES --- */
+:root {
+    /* Color Palette - Cyber Luxury */
+    --bg-dark: #05070a;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-glass: rgba(10, 12, 18, 0.7);
+    --border: rgba(255, 255, 255, 0.08);
+    
+    /* Brand Colors */
+    --accent-blue: #007AFF;
+    --accent-purple: #7000FF;
+    --accent-gradient: linear-gradient(135deg, #007AFF, #7000FF);
+    
+    /* Text */
+    --text-main: #ffffff;
+    --text-dim: #9ca3af;
+    
+    /* Animation Speeds */
+    --transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* --- RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+a, button {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* --- FLOATING NAVIGATION --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+}
+
+.nav-glass {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+}
+
+.logo h1 {
+    font-family: 'Space Grotesque', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+
+.logo span { color: var(--accent-blue); }
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover { color: var(--text-main); }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at 50% -20%, #1e1b4b 0%, var(--bg-dark) 60%);
+}
+
+.badge {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--accent-blue);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.hero h2 {
+    font-family: 'Space Grotesque', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    margin-bottom: 2rem;
+}
+
+.hero h2 span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- BENTO GRID (TECH SPECS) --- */
+.section-padding { padding: 120px 0; }
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: 1.5rem;
+}
+
+.bento-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: var(--transition);
+}
+
+.bento-item:hover {
+    border-color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-8px);
+}
+
+.large { grid-column: span 2; grid-row: span 2; }
+.tall { grid-row: span 2; }
+
+.bento-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-family: 'Space Grotesque', sans-serif;
+}
+
+/* --- PRODUCT CARDS --- */
+.frame-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.frame-card {
+    background: #0d1016;
+    border-radius: 36px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+}
+
+.frame-img {
+    width: 100%;
+    height: 250px;
+    background: #161a22;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+.frame-card:hover .frame-img { transform: scale(0.96); }
+
+.price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    color: var(--text-main);
+}
+
+.price span {
+    font-size: 1rem;
+    color: var(--text-dim);
+    text-decoration: line-through;
+    margin-left: 12px;
+}
+
+/* --- BUTTONS --- */
+.btn-main {
+    background: var(--accent-blue);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    border-radius: 18px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 122, 255, 0.2);
+}
+
+.btn-main:hover {
+    background: var(--accent-purple);
+    box-shadow: 0 15px 30px rgba(112, 0, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* --- FORMS --- */
+.glass-form {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 4rem;
+    border-radius: 48px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 1.3rem;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-family: inherit;
+}
+
+input:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+}
+
+/* --- WHATSAPP FLOAT --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: #25D366;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .bento-grid { grid-template-columns: 1fr 1fr; }
+    .large { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .nav-glass { padding: 0.6rem 1.2rem; }
+    nav { display: none; }
+    .hero h2 { font-size: 3.5rem; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .large, .tall { grid-column: auto; grid-row: auto; }
+    .glass-form { padding: 2rem; }
+}

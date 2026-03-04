@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eyesnstylestudio | Next-Gen Eyewear</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+--bg: #05070a;
+--card-bg: rgba(255,255,255,0.03);
+--border: rgba(255,255,255,0.08);
+--accent: #007AFF;
+--accent-glow: #7000FF;
+--text-main:#ffffff;
+--text-dim:#9ca3af;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+background:var(--bg);
+color:var(--text-main);
+font-family:'Inter',sans-serif;
+}
+
+.container{max-width:1200px;margin:auto;padding:0 1.5rem;}
+
+header{position:fixed;top:0;width:100%;padding:1.5rem 0;z-index:1000;}
+
+.nav-glass{
+background:rgba(5,7,10,0.7);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0.7rem 2rem;
+}
+
+.logo h1{font-size:1.4rem;font-weight:800;}
+.logo span{color:var(--accent);}
+
+nav ul{display:flex;gap:2rem;list-style:none;}
+nav a{color:var(--text-dim);text-decoration:none;font-size:0.85rem;}
+nav a:hover{color:var(--accent);}
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+background:radial-gradient(circle at 80% 20%,#1a1033 0%,#05070a 50%);
+}
+
+.hero-content{max-width:750px;}
+
+.hero h2{
+font-size:clamp(3rem,8vw,5.5rem);
+line-height:0.9;
+margin-bottom:1.5rem;
+}
+
+.hero h2 span{
+background:linear-gradient(to right,#fff,var(--accent));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{color:var(--text-dim);font-size:1.25rem;margin-bottom:2rem;}
+
+.section-padding{padding:100px 0;}
+
+.btn-main{
+background:var(--accent);
+color:#fff;
+padding:1rem 2rem;
+border-radius:16px;
+text-decoration:none;
+font-weight:700;
+display:inline-block;
+}
+
+.whatsapp-float{
+position:fixed;
+bottom:30px;
+right:30px;
+background:#25D366;
+color:white;
+padding:15px 25px;
+border-radius:50px;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+<div class="nav-glass">
+<div class="logo"><h1>Eyes N Style Studio<span>.</span></h1></div>
+
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#tech">Tech</a></li>
+<li><a href="#collection">Collection</a></li>
+<li><a href="#book">Book Test</a></li>
+</ul>
+</nav>
+
+<a href="#book" class="btn-main">Appointments</a>
+</div>
+</div>
+</header>
+
+
+<section id="home" class="hero">
+<div class="container">
+<div class="hero-content">
+
+<span>Next-Gen Optical Studio</span>
+
+<h2>Vision Meets <span>Lifestyle.</span></h2>
+
+<p>Redefining eye care for the modern Indian.</p>
+
+<a href="#collection" class="btn-main">Shop the Drop</a>
+
+</div>
+</div>
+</section>
+
+
+
+<section id="book" class="section-padding">
+
+<div class="container" style="max-width:800px;text-align:center;">
+
+<h2>Book a Pro Eye-Test</h2>
+
+<form id="appointmentForm" style="background:var(--card-bg);padding:3rem;border-radius:40px;border:1px solid var(--border);text-align:left;">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+
+<input id="name" type="text" placeholder="Full Name" required style="padding:1rem;background:#000;border:1px solid var(--border);color:#fff;border-radius:12px;">
+
+<input id="phone" type="tel" placeholder="WhatsApp Number" required style="padding:1rem;background:#000;border:1px solid var(--border);color:#fff;border-radius:12px;">
+
+</div>
+
+<select id="service" style="margin-top:1rem;padding:1rem;background:#000;border:1px solid var(--border);color:#fff;border-radius:12px;">
+
+<option>Complete Eye Examination (₹499)</option>
+<option>Frame Styling Consultation (Free)</option>
+<option>Blue-Light Stress Test</option>
+
+</select>
+
+<button type="submit" class="btn-main" style="width:100%;margin-top:1rem;">Confirm Slot</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<a href="https://wa.me/918860641001" class="whatsapp-float">
+💬 Chat on WhatsApp
+</a>
+
+
+<footer>
+<div class="container">
+<p>© 2026 Eyesnstylestudio</p>
+</div>
+</footer>
+
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getFirestore,collection,addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+apiKey:"AIzaSyB0F355e2exR0dDD0Od9mHeY4ISC4HiFUE",
+authDomain:"eyes-n-style-studio.firebaseapp.com",
+projectId:"eyes-n-style-studio",
+storageBucket:"eyes-n-style-studio.firebasestorage.app",
+messagingSenderId:"610509803250",
+appId:"1:610509803250:web:cc0ace285ed2ebc10b8a6b"
+};
+
+
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+
+
+const form=document.getElementById("appointmentForm");
+
+form.addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const name=document.getElementById("name").value;
+const phone=document.getElementById("phone").value;
+const service=document.getElementById("service").value;
+
+try{
+
+await addDoc(collection(db,"appointments"),{
+
+name:name,
+phone:phone,
+service:service,
+time:new Date()
+
+});
+
+alert("Appointment Booked Successfully!");
+
+form.reset();
+
+}
+
+catch(error){
+
+alert("Error booking appointment");
+
+console.log(error);
+
+}
+
+});
+
+</script>
+
+
+</body>
+</html>
