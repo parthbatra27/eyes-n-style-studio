@@ -1,249 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eyesnstylestudio | Next-Gen Eyewear</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyesnstylestudio | Next-Gen Eyewear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #007AFF; 
+            --accent-glow: #7000FF;
+            --text-main: #ffffff;
+            --text-dim: #9ca3af;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-<style>
-:root {
---bg: #05070a;
---card-bg: rgba(255,255,255,0.03);
---border: rgba(255,255,255,0.08);
---accent: #007AFF;
---accent-glow: #7000FF;
---text-main:#ffffff;
---text-dim:#9ca3af;
-}
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+        h1, h2, h3, .price { font-family: 'Space Grotesque', sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-body{
-background:var(--bg);
-color:var(--text-main);
-font-family:'Inter',sans-serif;
-}
+        /* --- NAVIGATION --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; }
+        .nav-glass {
+            background: rgba(5, 7, 10, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 2rem;
+        }
+        .logo h1 { font-size: 1.4rem; letter-spacing: -1.5px; font-weight: 800; }
+        .logo span { color: var(--accent); }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
 
-.container{max-width:1200px;margin:auto;padding:0 1.5rem;}
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 80% 20%, #1a1033 0%, #05070a 50%);
+        }
+        .hero-content { max-width: 750px; }
+        .hero h2 { font-size: clamp(3rem, 8vw, 5.5rem); line-height: 0.9; margin-bottom: 1.5rem; letter-spacing: -4px; }
+        .hero h2 span { background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-dim); font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 600px; }
 
-header{position:fixed;top:0;width:100%;padding:1.5rem 0;z-index:1000;}
+        /* --- BENTO GRID --- */
+        .section-padding { padding: 100px 0; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 220px;
+            gap: 1rem;
+        }
+        .bento-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .bento-item:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); }
+        .large { grid-column: span 2; grid-row: span 2; }
+        .tall { grid-row: span 2; }
+        
+        .badge {
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
 
-.nav-glass{
-background:rgba(5,7,10,0.7);
-backdrop-filter:blur(20px);
-border:1px solid var(--border);
-border-radius:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0.7rem 2rem;
-}
+        /* --- PRODUCTS --- */
+        .frame-card {
+            background: #0f1218;
+            border-radius: 30px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .frame-card:hover { border-color: var(--accent-glow); transform: translateY(-12px); }
+        .frame-img {
+            width: 100%;
+            height: 220px;
+            background: #161a22;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        .price { font-size: 1.6rem; color: var(--text-main); margin: 0.5rem 0; }
+        .price span { font-size: 0.9rem; color: var(--text-dim); text-decoration: line-through; margin-left: 10px; }
 
-.logo h1{font-size:1.4rem;font-weight:800;}
-.logo span{color:var(--accent);}
+        /* --- SPECS --- */
+        .specs-table {
+            margin-top: 40px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 1rem 2rem;
+            border: 1px solid var(--border);
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .spec-row:last-child { border-bottom: none; }
 
-nav ul{display:flex;gap:2rem;list-style:none;}
-nav a{color:var(--text-dim);text-decoration:none;font-size:0.85rem;}
-nav a:hover{color:var(--accent);}
+        /* --- BUTTONS --- */
+        .btn-main {
+            background: var(--accent);
+            color: #fff;
+            padding: 1.2rem 2.5rem;
+            border-radius: 16px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-main:hover { background: #0062cc; box-shadow: 0 0 30px rgba(0, 122, 255, 0.4); }
 
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-background:radial-gradient(circle at 80% 20%,#1a1033 0%,#05070a 50%);
-}
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
 
-.hero-content{max-width:750px;}
-
-.hero h2{
-font-size:clamp(3rem,8vw,5.5rem);
-line-height:0.9;
-margin-bottom:1.5rem;
-}
-
-.hero h2 span{
-background:linear-gradient(to right,#fff,var(--accent));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.hero p{color:var(--text-dim);font-size:1.25rem;margin-bottom:2rem;}
-
-.section-padding{padding:100px 0;}
-
-.btn-main{
-background:var(--accent);
-color:#fff;
-padding:1rem 2rem;
-border-radius:16px;
-text-decoration:none;
-font-weight:700;
-display:inline-block;
-}
-
-.whatsapp-float{
-position:fixed;
-bottom:30px;
-right:30px;
-background:#25D366;
-color:white;
-padding:15px 25px;
-border-radius:50px;
-text-decoration:none;
-}
-
-</style>
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+            .large, .tall { grid-column: auto; grid-row: auto; }
+            nav { display: none; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="container">
-<div class="nav-glass">
-<div class="logo"><h1>Eyes N Style Studio<span>.</span></h1></div>
+    <header>
+        <div class="container">
+            <div class="nav-glass">
+                <div class="logo"><h1>Eyes N Style Studio<span>.</span></h1></div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#tech">Tech Specs</a></li>
+                        <li><a href="#collection">Collection</a></li>
+                        <li><a href="#book">Book Test</a></li>
+                    </ul>
+                </nav>
+                <a href="#book" class="btn-main" style="padding: 0.6rem 1.2rem; font-size: 0.8rem;">Appointments</a>
+            </div>
+        </div>
+    </header>
 
-<nav>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#tech">Tech</a></li>
-<li><a href="#collection">Collection</a></li>
-<li><a href="#book">Book Test</a></li>
-</ul>
-</nav>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">Next-Gen Optical Studio</span>
+                <h2>Vision Meets <span>Lifestyle.</span></h2>
+                <p>Redefining eye care for the modern Indian. Aerospace-grade Titanium frames and AI-calibrated lenses for total clarity.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#collection" class="btn-main">Shop the Drop</a>
+                    <a href="#tech" class="btn-main" style="background: transparent; border: 1px solid var(--border);">Materials</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<a href="#book" class="btn-main">Appointments</a>
-</div>
-</div>
-</header>
+    <section id="tech" class="section-padding">
+        <div class="container">
+            <div class="bento-grid">
+                <div class="bento-item large">
+                    <span class="badge">Innovation</span>
+                    <h3>Why Titanium Grade-5?</h3>
+                    <p>At <b>Eyesnstylestudio</b>, we use Aerospace-grade Titanium. It’s 45% lighter than steel but twice as strong. Perfect for the Indian climate—it never rusts, never reacts with sweat, and feels like you're wearing nothing at all.</p>
+                    <div style="margin-top: 2rem; display: flex; gap: 30px;">
+                        <div><h4 style="font-size: 1.8rem;">12g</h4><p style="font-size: 0.7rem; color: var(--text-dim);">Featherlight</p></div>
+                        <div><h4 style="font-size: 1.8rem;">100%</h4><p style="font-size: 0.7rem; color: var(--text-dim);">Hypoallergenic</p></div>
+                    </div>
+                </div>
+                <div class="bento-item tall">
+                    <span class="badge">Screen Defense</span>
+                    <h3>Blue-Block Pro</h3>
+                    <p>Designed for the digital hustle. Our lenses filter out 98% of harmful blue light emitted from phones and laptops.</p>
+                </div>
+                <div class="bento-item">
+                    <h3>HD Optics</h3>
+                    <p>Edge-to-edge distortion-free vision.</p>
+                </div>
+                <div class="bento-item">
+                    <h3>Flex-Hinge</h3>
+                    <p>Screwless tech that lasts forever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="collection" class="section-padding" style="background: #080a0f;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Latest Drop '25</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                
+                <div class="frame-card">
+                    <div class="frame-img">👓</div>
+                    <span class="badge">Best Seller</span>
+                    <h3>The Maverick Titan</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Pure Japanese Titanium | Matte Black</p>
+                    <p class="price">₹8,999 <span>₹12,500</span></p>
+                    <a href="#" class="btn-main" style="width: 100%;">Buy Now</a>
+                </div>
 
-<section id="home" class="hero">
-<div class="container">
-<div class="hero-content">
+                <div class="frame-card">
+                    <div class="frame-img">🕶️</div>
+                    <span class="badge" style="background: var(--accent-glow); color: white;">Limited Edition</span>
+                    <h3>Cyber Aviator Gold</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">24K Ion Plated | Aerospace Build</p>
+                    <p class="price">₹11,499 <span>₹16,000</span></p>
+                    <a href="#" class="btn-main" style="width: 100%;">Buy Now</a>
+                </div>
 
-<span>Next-Gen Optical Studio</span>
+                <div class="frame-card">
+                    <div class="frame-img">👓</div>
+                    <span class="badge">New Arrival</span>
+                    <h3>Minimalist Neo</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Zero-Gravity Frame | Raw Silver</p>
+                    <p class="price">₹7,450 <span>₹10,000</span></p>
+                    <a href="#" class="btn-main" style="width: 100%;">Buy Now</a>
+                </div>
+            </div>
 
-<h2>Vision Meets <span>Lifestyle.</span></h2>
+            <div class="specs-table">
+                <h3 style="margin-bottom: 1rem; padding-top: 1rem;">The Eyesnstylestudio Standard</h3>
+                <div class="spec-row">
+                    <span style="color: var(--text-dim);">Frame Warranty</span>
+                    <span>2 Year Comprehensive Digital Warranty</span>
+                </div>
+                <div class="spec-row">
+                    <span style="color: var(--text-dim);">Lens Coating</span>
+                    <span>16-Layer Anti-Reflective Nano Coating</span>
+                </div>
+                <div class="spec-row">
+                    <span style="color: var(--text-dim);">Delivery</span>
+                    <span>Free Express Shipping Across India (3-5 Days)</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p>Redefining eye care for the modern Indian.</p>
+    <section id="book" class="section-padding">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Book a Pro Eye-Test.</h2>
+            <p style="color: var(--text-dim); margin-bottom: 3rem;">Visit our Delhi studio for a clinical 12-point vision check-up using AI-diagnostics.</p>
+            <form id="appointmentForm" style="background: var(--card-bg); padding: 3rem; border-radius: 40px; border: 1px solid var(--border); text-align: left;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <input id="name" type="text" placeholder="Full Name" style="width: 100%; padding: 1.2rem; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 12px; margin-bottom: 1rem;">
+                    <input id="phone" type="tel" placeholder="WhatsApp Number" style="width: 100%; padding: 1.2rem; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 12px; margin-bottom: 1rem;">
+                </div>
+                <select id="service" style="width: 100%; padding: 1.2rem; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 12px; margin-bottom: 1.5rem;">                    <option>Complete Eye Examination (₹499)</option>
+                    <option>Frame Styling Consultation (Free)</option>
+                    <option>Blue-Light Stress Test</option>
+                </select>
+                <button type="submit" class="btn-main" style="width: 100%;">Confirm Slot</button>
+            </form>
+        </div>
+    </section>
 
-<a href="#collection" class="btn-main">Shop the Drop</a>
+    <a href="https://wa.me/918860641001" class="whatsapp-float">
+        <span>💬 Chat on WhatsApp</span>
+    </a>
 
-</div>
-</div>
-</section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Eyesnstylestudio. Engineered in India.</p>
+        </div>
+    </footer>
 
-
-
-<section id="book" class="section-padding">
-
-<div class="container" style="max-width:800px;text-align:center;">
-
-<h2>Book a Pro Eye-Test</h2>
-
-<form id="appointmentForm" style="background:var(--card-bg);padding:3rem;border-radius:40px;border:1px solid var(--border);text-align:left;">
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-
-<input id="name" type="text" placeholder="Full Name" required style="padding:1rem;background:#000;border:1px solid var(--border);color:#fff;border-radius:12px;">
-
-<input id="phone" type="tel" placeholder="WhatsApp Number" required style="padding:1rem;background:#000;border:1px solid var(--border);color:#fff;border-radius:12px;">
-
-</div>
-
-<select id="service" style="margin-top:1rem;padding:1rem;background:#000;border:1px solid var(--border);color:#fff;border-radius:12px;">
-
-<option>Complete Eye Examination (₹499)</option>
-<option>Frame Styling Consultation (Free)</option>
-<option>Blue-Light Stress Test</option>
-
-</select>
-
-<button type="submit" class="btn-main" style="width:100%;margin-top:1rem;">Confirm Slot</button>
-
-</form>
-
-</div>
-
-</section>
-
-
-<a href="https://wa.me/918860641001" class="whatsapp-float">
-💬 Chat on WhatsApp
-</a>
-
-
-<footer>
-<div class="container">
-<p>© 2026 Eyesnstylestudio</p>
-</div>
-</footer>
-
-
-
-<script type="module">
+      <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-import { getFirestore,collection,addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
-
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
-apiKey:"AIzaSyB0F355e2exR0dDD0Od9mHeY4ISC4HiFUE",
-authDomain:"eyes-n-style-studio.firebaseapp.com",
-projectId:"eyes-n-style-studio",
-storageBucket:"eyes-n-style-studio.firebasestorage.app",
-messagingSenderId:"610509803250",
-appId:"1:610509803250:web:cc0ace285ed2ebc10b8a6b"
+  apiKey: "AIzaSyB0F355e2exR0dDD0Od9mHeY4ISC4HiFUE",
+  authDomain: "eyes-n-style-studio.firebaseapp.com",
+  projectId: "eyes-n-style-studio",
+  storageBucket: "eyes-n-style-studio.firebasestorage.app",
+  messagingSenderId: "610509803250",
+  appId: "1:610509803250:web:cc0ace285ed2ebc10b8a6b"
 };
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
+const form = document.getElementById("appointmentForm");
 
-
-const form=document.getElementById("appointmentForm");
-
-form.addEventListener("submit",async(e)=>{
+form.addEventListener("submit", async (e) => {
 
 e.preventDefault();
 
-const name=document.getElementById("name").value;
-const phone=document.getElementById("phone").value;
-const service=document.getElementById("service").value;
+const name = document.getElementById("name").value;
+const phone = document.getElementById("phone").value;
+const service = document.getElementById("service").value;
 
-try{
+try {
 
 await addDoc(collection(db,"appointments"),{
-
 name:name,
 phone:phone,
 service:service,
 time:new Date()
-
 });
 
-alert("Appointment Booked Successfully!");
-
+alert("Appointment booked successfully!");
 form.reset();
 
-}
+} catch(error){
 
-catch(error){
-
+console.error(error);
 alert("Error booking appointment");
-
-console.log(error);
 
 }
 
 });
 
 </script>
-
-
 </body>
 </html>
